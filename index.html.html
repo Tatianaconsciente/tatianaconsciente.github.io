@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libre y Natural — Tatiana Ayala</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-oscuro: #2C4A3E;
+    --verde-medio: #4A7C6B;
+    --verde-claro: #8BAF9A;
+    --crema: #F5F0E8;
+    --dorado: #C9A96E;
+    --tierra: #8B6B4A;
+    --blanco: #FDFAF5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--blanco);
+    color: var(--verde-oscuro);
+    font-family: 'Jost', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--verde-oscuro);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(139,175,154,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.1) 0%, transparent 50%);
+  }
+
+  .hero-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid var(--dorado);
+    overflow: hidden;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    background: var(--verde-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .hero-circle-inner {
+    font-size: 56px;
+  }
+
+  .badge {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 10vw, 72px);
+    font-weight: 300;
+    color: var(--crema);
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--dorado);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--verde-claro);
+    text-align: center;
+    margin-top: 20px;
+    max-width: 320px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .hero-cta {
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--dorado);
+    color: var(--verde-oscuro);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--crema);
+    transform: translateY(-2px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--verde-claro);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--dorado), transparent);
+  }
+
+  /* STATEMENT */
+  .statement {
+    background: var(--crema);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .statement h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 7vw, 48px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--verde-oscuro);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .statement h2 strong {
+    font-weight: 600;
+    color: var(--tierra);
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--dorado);
+    margin: 32px auto;
+  }
+
+  .statement p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--verde-medio);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* SÍNTOMAS */
+  .sintomas {
+    background: var(--verde-oscuro);
+    padding: 80px 24px;
+  }
+
+  .sintomas-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .sintomas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .sintoma-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 20px 16px;
+    text-align: center;
+    color: var(--crema);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+  }
+
+  .sintoma-item:hover {
+    background: rgba(201,169,110,0.1);
+    border-color: var(--dorado);
+  }
+
+  .sintoma-emoji {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* OFERTAS */
+  .ofertas {
+    background: var(--blanco);
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 300;
+    color: var(--verde-oscuro);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .oferta-card {
+    background: var(--crema);
+    border-left: 3px solid var(--dorado);
+    padding: 32px 24px;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .oferta-card:hover {
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--verde-medio);
+  }
+
+  .oferta-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--tierra);
+    margin-bottom: 8px;
+  }
+
+  .oferta-nombre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--verde-oscuro);
+    margin-bottom: 8px;
+  }
+
+  .oferta-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--verde-medio);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .oferta-precio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--tierra);
+  }
+
+  .oferta-precio span {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--verde-claro);
+    margin-left: 4px;
+  }
+
+  .oferta-gratis {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--verde-medio);
+  }
+
+  /* FILOSOFIA */
+  .filosofia {
+    background: var(--crema);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .filosofia-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 6vw, 36px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--verde-oscuro);
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+
+  .filosofia-autor {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dorado);
+  }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: var(--verde-oscuro);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .cta-final h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 8vw, 48px);
+    font-weight: 300;
+    color: var(--crema);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .cta-final p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--verde-claro);
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--dorado);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--dorado);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+    display: block;
+    max-width: 280px;
+    margin: 12px auto 0;
+  }
+
+  .btn-secondary:hover {
+    background: var(--dorado);
+    color: var(--verde-oscuro);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1a2e28;
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--verde-claro);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-circle">
+    <span class="hero-circle-inner">🌿</span>
+  </div>
+  <div class="badge">Tatiana Ayala · Libre y Natural</div>
+  <h1>Tu cuerpo sabe<br>cómo <em>sanar.</em></h1>
+  <p class="hero-sub">Limpieza intestinal · Descanso digestivo · Longevidad natural para mujeres que eligen vivir vibrantes</p>
+  <div class="hero-cta">
+    <a href="#ofertas" class="btn-primary">Empieza tu transformación</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>descubre</span>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <h2 class="reveal">Un cuerpo <strong>limpio</strong> es el punto de partida de todo.</h2>
+  <div class="divider"></div>
+  <p class="reveal">Cuando le das descanso digestivo a tu cuerpo, activas su capacidad natural de limpiarse, regenerarse y rejuvenecer. No se trata de suplementos ni dietas de moda — se trata de volver a lo esencial.</p>
+</section>
+
+<!-- SÍNTOMAS -->
+<section class="sintomas">
+  <div class="sintomas-label reveal">¿Te identificas?</div>
+  <div class="sintomas-grid reveal">
+    <div class="sintoma-item"><span class="sintoma-emoji">😴</span>Cansancio sin razón aparente</div>
+    <div class="sintoma-item"><span class="sintoma-emoji">🌡️</span>Inflamación constante</div>
+    <div class="sintoma-item"><span class="sintoma-emoji">🧠</span>Mente nublada y sin energía</div>
+    <div class="sintoma-item"><span class="sintoma-emoji">⏰</span>Te sientes mayor de lo que eres</div>
+    <div class="sintoma-item"><span class="sintoma-emoji">🩺</span>"Todo está normal" pero tú sabes que no</div>
+    <div class="sintoma-item"><span class="sintoma-emoji">✨</span>Lista para un cambio real</div>
+  </div>
+</section>
+
+<!-- OFERTAS -->
+<section class="ofertas" id="ofertas">
+  <div class="section-label reveal">Mis programas</div>
+  <h2 class="section-title reveal">Elige tu camino</h2>
+
+  <div class="oferta-card reveal">
+    <div class="oferta-tag">Entrada gratuita</div>
+    <div class="oferta-nombre">Reto 7 Días 🌱</div>
+    <div class="oferta-desc">Desinflama y Rejuvenece. Tu primera semana de limpieza guiada — siente la diferencia sin compromiso. Grupo privado de WhatsApp incluido.</div>
+    <div class="oferta-gratis">Gratis</div>
+  </div>
+
+  <div class="oferta-card reveal">
+    <div class="oferta-tag">Más popular</div>
+    <div class="oferta-nombre">Taller 21 Días 🌿</div>
+    <div class="oferta-desc">Limpieza intestinal completa, desparasitación y regeneración celular. Protocolo paso a paso con acompañamiento diario.</div>
+    <div class="oferta-precio">$37 <span>precio de lanzamiento</span></div>
+  </div>
+
+  <div class="oferta-card reveal">
+    <div class="oferta-tag">Transformación profunda</div>
+    <div class="oferta-nombre">Consulta 1:1 🧬</div>
+    <div class="oferta-desc">Sesión personalizada de 60-90 min. Protocolo diseñado específicamente para tu cuerpo y tus objetivos. Seguimiento 7 días incluido.</div>
+    <div class="oferta-precio">$97</div>
+  </div>
+</section>
+
+<!-- FILOSOFÍA -->
+<section class="filosofia">
+  <div class="filosofia-quote reveal">"Prevenir es más inteligente que curar."</div>
+  <div class="filosofia-autor reveal">— Tatiana Ayala · Libre y Natural</div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2 class="reveal">¿Lista para tu versión más vital?</h2>
+  <p class="reveal">Tu cuerpo tiene la capacidad de regenerarse.<br>Solo necesita que lo dejes hacer su trabajo.</p>
+  <a href="#ofertas" class="btn-primary reveal">Quiero empezar</a>
+  <a href="https://wa.me/1" class="btn-secondary reveal">Hablar con Tatiana</a>
+</section>
+
+<footer>
+  <p>© 2026 Tatiana Ayala · Libre y Natural · @tatianaconsciente</p>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
